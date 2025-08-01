@@ -44,6 +44,6 @@
 <body>
   <h1>Look at these cars!!!</h1>
   <img src="cars.jpg" alt="Cool Cars" />
-  <footer>Powered by nginx @ koshok.vip</footer>
+  <footer>Powered by nginx @ ${DOMAIN}</footer>
 </body>
 </html>

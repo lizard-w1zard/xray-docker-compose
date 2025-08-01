@@ -2,7 +2,7 @@ server {
 	listen 443 ssl;
 	listen [::]:443 ssl;
         http2 on;
-	server_name <your_server_name>; # paste here your server_name
+	server_name ${DOMAIN};
 
         index index.html;
         root /var/www/html;
@@ -12,7 +12,7 @@ server {
 	ssl_protocols TLSv1.2 TLSv1.3;
 	ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
 
-	location /<your_path> { # paste here your path
+	location /${WS_PATH} {
 	if ($http_upgrade != "websocket") {
 		return 404;
 	}

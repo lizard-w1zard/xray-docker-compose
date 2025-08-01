@@ -9,7 +9,7 @@
       "settings": {
         "clients": [
           {
-            "id": "<your_id>" # paste here your id
+            "id": "${UUID}"
           }
         ],
         "decryption": "none"
@@ -17,7 +17,7 @@
       "streamSettings": {
         "network": "ws",
         "wsSettings": {
-          "path": "<your_path>" # paste here your path
+          "path": "${WS_PATH}"
         }
       },
 			"sniffing": {
