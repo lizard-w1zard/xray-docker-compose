@@ -1,4 +1,4 @@
 #!/bin/sh
 
-envsubst '${UUID} ${WS_PATH}' < /etc/xray/config.json.tpl > /etc/xray/config.json
+envsubst '${UUID} ${DEST} ${PRIVATE_KEY} ${SRI}' < /etc/xray/config.json.tpl > /etc/xray/config.json
 exec "$@"

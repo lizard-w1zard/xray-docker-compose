@@ -1,6 +1,3 @@
-ssl/*
-!ssl/.gitkeep
-
 *.json
 *.conf
 .env

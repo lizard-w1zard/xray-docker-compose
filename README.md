@@ -1,6 +1,6 @@
 # xray-docker-compose
 
-Docker-based setup for Xray (VLESS over WebSocket) behind Nginx with TLS and optional fake frontend.  
+Docker-based setup for Xray (VLESS over REALITY).  
 Perfect for self-hosted, obfuscated, and TLS-protected Xray deployments.
 
 ## 📌 About Xray
@@ -11,23 +11,9 @@ The Docker image is based on [teddysun/xray](https://hub.docker.com/r/teddysun/x
 
 ## ✨ Features
 
-- ✅ Xray (VLESS + WebSocket)
-- ✅ Nginx reverse proxy with TLS
+- ✅ Xray (VLESS + REALITY)
 - ✅ Config templating via envsubst
-- ✅ Self-signed certificate support
-- ✅ Fake static website as cover page
 - ✅ Docker Compose deployment
-
-## 🛠️ Development vs Production
-
-This project runs fine locally with self-signed TLS certificates (see `./scripts/generate-dev-certs.sh`).  
-However, for **production deployment**, you must replace them with valid TLS certificates.
-
-We recommend [Let's Encrypt](https://letsencrypt.org/) with `certbot`:
-
-📖 Official instructions:  
-https://certbot.eff.org/instructions  
-(choose your OS and "Nginx" as the software)
 
 ## 📦 Requirements
 
@@ -41,18 +27,29 @@ https://certbot.eff.org/instructions
    cp .env.example .env
    ```
 
-2. (Optional) Generate self-signed certificates:
+2. Generate REALITY keys:
     ``` bash
-    chmod +x ./scripts/generate-dev-certs.sh
-    ./scripts/generate-dev-certs.sh
+    docker compose run --rm xray xray x25519
     ```
 
-3. Run the project:
+3. Generate random SRI:
+    ``` bash
+    openssl rand -hex 8
+    ```
+
+4. Generate UUID:
+    ``` bash
+    uuidgen
+    # or
+    cat /proc/sys/kernel/random/uuid
+    ```
+
+5. Fill variables in .env with your data
+
+6. Run the project:
     ``` bash
     docker compose up -d --build
     ```
-
-4. Open https://localhost in your browser to see the fake frontend.
 
 ## ⚙️ Environment Variables
 
@@ -60,39 +57,10 @@ The project can be flexible configured by replacing default content of environme
 
 | Variable   | Description                            | Example                      |
 |------------|----------------------------------------|------------------------------|
-| `UUID`     | UUID for Xray client authentication    | `c3...5d2a5d`                |
-| `WS_PATH`  | WebSocket path (must start with `/`)   | `/ws_path`                   |
-| `DOMAIN`   | Used in nginx `server_name` and footer | `yourdomain.com` or `localhost` |
-
-You can generate a `UUID` using:
-
-``` bash
-uuidgen
-# or
-cat /proc/sys/kernel/random/uuid
-```
-
-Another way is to use: [uuidgenerator.net](https://www.uuidgenerator.net/)
-
-## 🔐 Certificates
-
-By default, the project expects TLS certificates in the `ssl/` directory:
-
-- `ssl/cert.crt` — full chain cert
-- `ssl/private.key` — private key
-
-For local development, you can generate a self-signed certificate using:
-
-```bash
-./scripts/generate-dev-certs.sh
-```
-
-⚠️ Do not use self-signed certificates in production.
-
-## 🐾 Decoy Site
-
-This project includes a minimal static site (with a cat image 🐱) served by nginx at `/`.  
-You can replace `index.html.tpl` and `cars.jpg` with your own content if desired.
+| `DEST`     | Any famous site working with TLS       | `www.cloudflare.com`         |
+| `PRIVATE_KEY` | Private key generated in step 2     | `aN...ITXM`                  |
+| `SRI`      | Short identificator generated in step 3 | `d1...a09a`                 |
+| `UUID`     | UUID for Xray client authentication generatend in step 4    | `c3...5d2a5d` |
 
 ## 📜 License
 

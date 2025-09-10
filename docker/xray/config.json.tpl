@@ -4,7 +4,8 @@
   },
   "inbounds": [
     {
-      "port": 1234 ,
+      "listen": "0.0.0.0",
+      "port": 443,
       "protocol": "vless",
       "settings": {
         "clients": [
@@ -15,16 +16,22 @@
         "decryption": "none"
       },
       "streamSettings": {
-        "network": "ws",
-        "wsSettings": {
-          "path": "${WS_PATH}"
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "dest": "${DEST}:443",
+          "serverNames": ["${DEST}"],
+          "privateKey": "${PRIVATE_KEY}",
+          "shortIds": ["${SRI}"]
         }
       },
 			"sniffing": {
 				"enabled": true,
 				"destOverride": [
 					"http",
-					"tls"
+					"tls",
+          "quic"
 				]
 			}
     }
