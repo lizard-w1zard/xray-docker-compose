@@ -32,7 +32,7 @@ The Docker image is based on [teddysun/xray](https://hub.docker.com/r/teddysun/x
     docker compose run --rm xray xray x25519
     ```
 
-3. Generate random SRI:
+3. Generate random SID:
     ``` bash
     openssl rand -hex 8
     ```
@@ -59,7 +59,7 @@ The project can be flexible configured by replacing default content of environme
 |------------|----------------------------------------|------------------------------|
 | `DEST`     | Any famous site working with TLS       | `www.cloudflare.com`         |
 | `PRIVATE_KEY` | Private key generated in step 2     | `aN...ITXM`                  |
-| `SRI`      | Short identificator generated in step 3 | `d1...a09a`                 |
+| `SID`      | Short identificator generated in step 3 | `d1...a09a`                 |
 | `UUID`     | UUID for Xray client authentication generatend in step 4    | `c3...5d2a5d` |
 
 ## 📜 License

@@ -1,4 +1,4 @@
 #!/bin/sh
 
-envsubst '${UUID} ${DEST} ${PRIVATE_KEY} ${SRI}' < /etc/xray/config.json.tpl > /etc/xray/config.json
+envsubst '${UUID} ${DEST} ${PRIVATE_KEY} ${SID}' < /etc/xray/config.json.tpl > /etc/xray/config.json
 exec "$@"

@@ -23,7 +23,7 @@
           "dest": "${DEST}:443",
           "serverNames": ["${DEST}"],
           "privateKey": "${PRIVATE_KEY}",
-          "shortIds": ["${SRI}"]
+          "shortIds": ["${SID}"]
         }
       },
 			"sniffing": {

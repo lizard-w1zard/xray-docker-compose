@@ -10,6 +10,6 @@ services:
       - UUID=${UUID}
       - DEST=${DEST}
       - PRIVATE_KEY=${PRIVATE_KEY}
-      - SRI=${SRI}
+      - SID=${SID}
     volumes:
       - ./docker/xray/config.json.tpl:/etc/xray/config.json.tpl
