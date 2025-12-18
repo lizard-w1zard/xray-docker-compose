@@ -10,7 +10,8 @@
       "settings": {
         "clients": [
           {
-            "id": "${UUID}"
+            "id": "${UUID}",
+            "flow": "xtls-rprx-vision"
           }
         ],
         "decryption": "none"
@@ -51,6 +52,11 @@
   "routing": {
     "domainStrategy": "IPIfNonMatch",
     "rules": [
+      {
+        "type": "field",
+        "protocol": ["quic"],
+        "outboundTag": "blocked"
+      },
       {
         "type": "field",
         "ip": [
